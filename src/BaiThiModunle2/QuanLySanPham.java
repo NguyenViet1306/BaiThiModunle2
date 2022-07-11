@@ -20,17 +20,21 @@ public class QuanLySanPham {
     }
 
     public SanPham TaoSanPham() {
-        System.out.println("Nhập mã sản phẩm:");
-        int maSanPham = Integer.parseInt(input.nextLine());
-        System.out.println("Nhập tên sản phẩm:");
-        String tenSanPham = input.nextLine();
-        System.out.println("Nhập giá của sản phẩm:");
-        int gia = Integer.parseInt(input.nextLine());
-        System.out.println("Nhập số lượng sản phẩm:");
-        int soLuong = Integer.parseInt(input.nextLine());
-        System.out.println("Mô Tả sản phẩm:");
-        String moTa = input.nextLine();
-        return new SanPham(maSanPham, tenSanPham, gia, soLuong, moTa);
+        try {
+            System.out.println("Nhập mã sản phẩm:");
+            int maSanPham = Integer.parseInt(input.nextLine());
+            System.out.println("Nhập tên sản phẩm:");
+            String tenSanPham = input.nextLine();
+            System.out.println("Nhập giá của sản phẩm:");
+            int gia = Integer.parseInt(input.nextLine());
+            System.out.println("Nhập số lượng sản phẩm:");
+            int soLuong = Integer.parseInt(input.nextLine());
+            System.out.println("Mô Tả sản phẩm:");
+            String moTa = input.nextLine();
+            return new SanPham(maSanPham, tenSanPham, gia, soLuong, moTa);
+        } catch (Exception e){
+            System.out.println("Nhập sai định dạng nhập lại");
+        }
     }
 
     public void ThemSanPham() {
@@ -72,21 +76,26 @@ public class QuanLySanPham {
 
         }}
 
-        public void XoaSanPham() {
-            System.out.println("Nhập Vào mã sản phẩm muốn xóa:");
-            int maSanPham = Integer.parseInt(input.nextLine());
+    public void XoaSanPham() {
+        try {
+            System.out.println("Nhập mã sản phẩm muốn xóa: ");
+            int  maSanPham = Integer.parseInt(input.nextLine());
             for (int i = 0; i < sanPhams.size(); i++) {
-                if (maSanPham == sanPhams.get(i).getMaSanPham()) {
-                    sanPhams.remove(i);
+                if (sanPhams.get(i).getMaSanPham() ==  maSanPham) {
+                    sanPhams.remove(sanPhams.get(i));
+                }else {
+                    System.out.println("Mã sản phẩm không tồn tại!");
                 }
             }
-            if (!kiemTraMaSanPham(maSanPham)) {
-                System.out.println("Nhập lại mã sản phẩm");
-            }
+        }catch (Exception e){
+            System.out.println("Nhap sai dinh dang, nhap lai");
         }
 
+    }
 
-            Comparator<SanPham> compareUp = new Comparator<SanPham>() {
+
+
+    Comparator<SanPham> compareUp = new Comparator<SanPham>() {
                 @Override
                 public int compare(SanPham o1, SanPham o2) {
                     return (o1.getGia() - o2.getGia());
