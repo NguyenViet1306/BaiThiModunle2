@@ -35,6 +35,7 @@ public class QuanLySanPham {
         } catch (Exception e){
             System.out.println("Nhập sai định dạng nhập lại");
         }
+        return  null;
     }
 
     public void ThemSanPham() {
